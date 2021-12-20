@@ -37,7 +37,7 @@ class LevelOne extends GameState {
 
 		final blueRect = new FlxSprite(138, 169);
     blueRect.loadGraphic("assets/images/blue_rect.png", 574, 35);
-		blueRect.add_body({mass: 0, rotation: 15});
+		// blueRect.add_body({mass: 0, rotation: 15});
 		add(blueRect);
 
 		final blueRectTwo = new FlxSprite(679, 510);

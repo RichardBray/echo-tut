@@ -21,7 +21,7 @@ lix install gh:AustinEast/echo-flixel
 
 2. Add flixel to project.xml
 ```xml
-	<haxelib name="echo-flixel" />
+<haxelib name="echo-flixel" />
 ```
 https://github.com/AustinEast/echo-flixel
 
