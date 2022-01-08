@@ -42,7 +42,7 @@
           "conditions": [
             {
               "cond": "lineLength <= n",
-              "value": 80
+              "value": 120
             }
           ],
           "type": "fillLine"
