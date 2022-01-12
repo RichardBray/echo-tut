@@ -23,11 +23,11 @@ class LevelOne extends GameState {
 		});
 
 		final redCircle = new FlxSprite(181, 31);
-    redCircle.loadGraphic("assets/images/red_circle_spots.png", 84, 84);
+		redCircle.loadGraphic("assets/images/red_circle_spots.png", 84, 84);
 		// redCircle.add_body(); // default params https://github.com/AustinEast/echo-flixel/blob/master/echo/FlxEcho.hx#L111
 		redCircle.add_body({
 			mass: 1,
-			elasticity: 1,
+			elasticity: 0.5,
 			shape: {
 				type: CIRCLE,
 				radius: 42,
@@ -37,7 +37,7 @@ class LevelOne extends GameState {
 
 		final blueRect = new FlxSprite(138, 169);
     blueRect.loadGraphic("assets/images/blue_rect.png", 574, 35);
-		// blueRect.add_body({mass: 0, rotation: 15});
+		blueRect.add_body({mass: 0, rotation: 15});
 		add(blueRect);
 
 		final blueRectTwo = new FlxSprite(679, 510);

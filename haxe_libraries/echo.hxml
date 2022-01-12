@@ -1,4 +1,3 @@
-# @install: lix --silent download "haxelib:/echo#3.1.0" into echo/3.1.0/haxelib
--lib hxmath
--cp ${HAXE_LIBCACHE}/echo/3.1.0/haxelib/
--D echo=3.1.0
+# @install: lix --silent download "haxelib:/echo#4.0.0" into echo/4.0.0/haxelib
+-cp ${HAXE_LIBCACHE}/echo/4.0.0/haxelib/
+-D echo=4.0.0
