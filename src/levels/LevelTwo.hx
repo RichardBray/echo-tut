@@ -12,6 +12,7 @@ using echo.math.Vector2;
 
 class LevelTwo extends GameState {
 	var player: FlxSprite;
+	var floatingBox: FlxSprite;
 
 	final colorBlue: FlxColor = 0xff23C3CD;
 	final colorOrange: FlxColor = 0xffDB7246;
@@ -45,19 +46,28 @@ class LevelTwo extends GameState {
 		add(endPlatform);
 
 		final pushableBox = new FlxSprite(915, 613);
-		pushableBox.makeGraphic(147, 234, colorRed);
+		pushableBox.makeGraphic(137, 233, colorRed);
 		pushableBox.add_body({
-			mass: 1,
-			drag_length: 500,
+			drag_length: 800,
 		});
 		add(pushableBox);
 
-		final floatingBox = new FlxSprite(1209, 163);
-		floatingBox.makeGraphic(147, 234, colorRed);
+		floatingBox = new FlxSprite(1209, 163);
+		floatingBox.makeGraphic(147, 233, colorRed);
+		floatingBox.add_body({
+			mass: 1,
+			elasticity: 0.5,
+		});
 		add(floatingBox);
+		floatingBox.get_body().active = false;
+		floatingBox.get_body().acceleration = new Vector2(0, 50);
+		floatingBox.get_body().drag = new Vector2(600, 600);
 
 		final floatingBoxTrigger = new FlxSprite(758, 839);
 		floatingBoxTrigger.makeGraphic(67, 8, colorRed);
+		floatingBoxTrigger.add_body({
+			mass: 0,
+		});
 		add(floatingBoxTrigger);
 
 		final endGoal = new FlxSprite(1815, 717);
@@ -67,6 +77,10 @@ class LevelTwo extends GameState {
 		final floorBoundary = new FlxObject(0, 1080, 243, 1);
 		floorBoundary.add_body({mass: 0});
 		add(floorBoundary);
+
+		final floorBoundaryTwo = new FlxObject(1062, 1080, 302, 1);
+		floorBoundaryTwo.add_body({mass: 0});
+		add(floorBoundaryTwo);
 
 		final leftBoundary = new FlxObject(0, 979, 1, 101);
 		leftBoundary.add_body({mass: 0});
@@ -79,8 +93,19 @@ class LevelTwo extends GameState {
 		player.listen(floorBoundary);
 		player.listen(leftBoundary);
 		player.listen(slopedPlatform);
+		player.listen(floorBoundaryTwo);
+		player.listen(pushableBox);
+		player.listen(floatingBox);
+		player.listen(floatingBoxTrigger, {
+			separate: false, // pass through, ghose mode
+			enter: (_, _, _) -> floatingBox.get_body().active = true,
+		});
+
 		pushableBox.listen(slopedPlatform);
-		pushableBox.listen(player);
+		pushableBox.listen(floorBoundaryTwo);
+		pushableBox.listen(floatingBox);
+
+		floatingBox.listen(floorBoundaryTwo);
 	}
 
 	function slopeVerticies(slopedPlatform:FlxSprite): Array<Vector2> {
