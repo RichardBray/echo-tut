@@ -47,6 +47,5 @@ class LevelOne extends GameState {
 
 		redCircle.listen(blueRect);
 		redCircle.listen(blueRectTwo);
-		// FlxEcho.instance.world.listen();
   }
 }
