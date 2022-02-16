@@ -1,5 +1,7 @@
 package levels;
 
+import echo.FlxEcho;
+
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxSubState;
@@ -12,10 +14,10 @@ class PauseMenu extends FlxSubState {
 
 	override public function create() {
 		super.create();
-		bgColor = 0xffffffff;
+		bgColor = 0x75ffffff;
 
 		final title = new FlxText(0, 100, 0, "Game paused");
-
+		FlxEcho.updates = false;
 		title.setFormat(FlxAssets.FONT_DEFAULT, 100, FlxColor.BLACK);
 		title.screenCenter(X);
 		title.scrollFactor.set(0, 0);
@@ -26,7 +28,7 @@ class PauseMenu extends FlxSubState {
 		super.update(elapsed);
 
 		if (FlxG.keys.justPressed.ESCAPE) {
-			FlxG.sound.resume();
+			FlxEcho.updates = true;
 			close();
 		}
 	}
