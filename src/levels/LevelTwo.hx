@@ -5,6 +5,8 @@ import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.util.FlxColor;
 
+import levels.PauseMenu;
+
 import states.GameState;
 
 using echo.FlxEcho;
@@ -127,5 +129,9 @@ class LevelTwo extends GameState {
 	override function update(elapsed: Float) {
 		super.update(elapsed);
 		playerMovement();
+		if (FlxG.keys.justPressed.ESCAPE) {
+			final pauseMenu = new PauseMenu();
+			openSubState(pauseMenu);
+		}
 	}
 }
